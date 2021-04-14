@@ -2,13 +2,13 @@
 
 session_start();
 
-//between function.. elenxei an oi xaraktires einai mesa sta oria p thetoume
+
 function between($val, $x, $y){
     $val_len = strlen($val);
     return ($val_len >= $x && $val_len <= $y)?TRUE:FALSE;
 }
 
-if(isset($_POST['reserv-submit'])) {//elenxw an exei bei sti selida mesw tou submit
+if(isset($_POST['reserv-submit'])) {
 
 require 'dbh.inc.php';
 
@@ -55,7 +55,7 @@ require 'dbh.inc.php';
     }
     
     else{
-     //checkarw ta available trapezia ana mera   
+     
     $sql = "SELECT t_tables FROM tables WHERE t_date='$date'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -63,10 +63,10 @@ require 'dbh.inc.php';
         $a_tables=$row["t_tables"];
     }
     }
-    else{$a_tables=20;} //default timi
+    else{$a_tables=20;} 
         
         
-    //elenxos trapeziwn ews 20 trapezia gia kathe imerominia
+    
     
     $sql = "SELECT SUM(num_tables) FROM reservation WHERE rdate='$date' AND time_zone='$time'";
     $result = $conn->query($sql);

@@ -12,7 +12,7 @@ if (isset($_POST['login-submit'])) {
         exit();
     }
     else {
-        $sql = "SELECT * FROM users WHERE uidUsers=? OR emailUsers=?";     //sundesi mesw username kai email
+        $sql = "SELECT * FROM users WHERE uidUsers=? OR emailUsers=?";     
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $sql)) {
             header("Location: ../index.php?error1=error");
@@ -30,7 +30,7 @@ if (isset($_POST['login-submit'])) {
                     exit();   
                 }
                 else if($pwdCheck == true) {
-                    session_start();                                //create of sessions
+                    session_start();                                
                     $_SESSION['user_id'] = $row['user_id'];
                     $_SESSION['username'] = $row['uidUsers'];
                     $_SESSION['role'] = $row['role_id'];

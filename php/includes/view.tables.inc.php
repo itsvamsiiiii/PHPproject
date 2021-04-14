@@ -11,7 +11,7 @@ if(isset($_SESSION['user_id'])){
      
 
     
-    //view reserved tables per date and time-zone
+    
     
     if($role==2){
         
@@ -55,7 +55,7 @@ if(isset($_SESSION['user_id'])){
         
       
        
-    //view total tables per date that have been submited from set tables  
+    
        
     $sql = "SELECT * FROM tables ORDER BY t_date";
     $result = $conn->query($sql);

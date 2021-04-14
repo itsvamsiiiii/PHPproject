@@ -2,7 +2,7 @@
 
 
 
-//post schedule
+
 
 if(isset($_POST['schedule'])){
     
@@ -29,7 +29,7 @@ require 'dbh.inc.php';
            exit();
        }
        else {
-           mysqli_stmt_bind_param($stmt, "s", $date);     //elenxos an uparxei idi grammeni i hmerominia!
+           mysqli_stmt_bind_param($stmt, "s", $date);     
            mysqli_stmt_execute($stmt);
            mysqli_stmt_store_result($stmt);
            $resultCheck = mysqli_stmt_num_rows($stmt);
@@ -64,7 +64,7 @@ require 'dbh.inc.php';
            }
        }
     }
-   //kleinw to connection
+   
    mysqli_stmt_close($stmt);
    mysqli_close($conn);
 }

@@ -4,18 +4,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">    <!--favicon-->
-<title>MonkaS. Restaurant</title>
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">    
+<title>Cafe</title>
 <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="css/style.css" rel="stylesheet" type="text/css">     <!--style.css document-->
-  <link href="css/font-awesome.min.css" rel="stylesheet">     <!--font-awesome-->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">  <!--bootstrap-->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  <!--googleapis jquery-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  <!--font-awesome-->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>                          <!--bootstrap-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>           <!--bootstrap-->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>            <!--bootstrap-->
+  <link href="css/style.css" rel="stylesheet" type="text/css">     
+  <link href="css/font-awesome.min.css" rel="stylesheet">     
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>                          
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>           
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>            
 </head>
 <style>
 .flex-column { 
@@ -39,7 +39,7 @@
 </style>
 
 <body>
- <!---navbar--->   
+ 
 <nav class="navbar navbar-expand-md navbar-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.php">
@@ -53,7 +53,7 @@
                     
                     
                     <?php
-                    //set navigation bar when logged in
+                    
                     if(isset($_SESSION['user_id'])){ echo'
                     <li class="nav-item">
                         <a class="nav-link" href="reservation.php" >New Reservation</a>
@@ -62,7 +62,7 @@
                         <a class="nav-link" href="view_reservations.php" >View Reservations</a>
                     </li>';
                     
-                    //set navigation bar when logged in and role of admin
+                    
                     if($_SESSION['role']==2) {   
                     echo'
                     <li class="nav-item">
@@ -76,7 +76,7 @@
                     </li>';    
                     }
                     }
-                    //main page not logged in navigation bar
+            
                     else { echo'
                     <li class="nav-item">
 	                 <a class="nav-link" href="#aboutus">About Us</a>
@@ -96,7 +96,7 @@
                 </ul>
                 
                     <?php
-                    //log out button when user is logged in
+            
                     if(isset($_SESSION['user_id'])){
                     echo '
                     <form class="navbar-form navbar-right" action="includes/logout.inc.php" method="post">
@@ -144,7 +144,7 @@
                     </script> ';
         
         
-            //error handling of log in
+            //error handling log in
         
             if($_GET['error1'] == "emptyfields") {   
             echo '<h5 class="text-danger text-center">Fill all fields, Please try again!</h5>';
@@ -205,7 +205,7 @@
 
                 <?php
                 if(isset($_GET['error'])){
-                    //script for modal to appear when error 
+                     
                     echo '  <script>
                                 $(document).ready(function(){
                                 $("#myModal_reg").modal("show");
@@ -213,7 +213,7 @@
                             </script> ';
 
 
-                    //error handling for errors and success --sign up form
+                
 
                     if($_GET['error'] == "emptyfields") {   
                         echo '<h5 class="bg-danger text-center">Fill all fields, Please try again!</h5>';
@@ -244,7 +244,7 @@
                     }
                 }
                 if(isset($_GET['signup'])) { 
-                        //script for modal to appear when success
+                        // success message 
                     echo '  <script>
                                 $(document).ready(function(){
                                 $("#myModal_reg").modal("show");
