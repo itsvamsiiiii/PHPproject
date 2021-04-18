@@ -1,23 +1,13 @@
--- phpMyAdmin SQL Dump
--- version 5.0.4
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Apr 15, 2021 at 02:51 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
---
+
+
 -- Database: `loginsystem`
 --
 
@@ -27,8 +17,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `reservation`
 --
 
-CREATE TABLE `reservation` (
-  `reserv_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `reservation`;
+CREATE TABLE IF NOT EXISTS `reservation` (
+  `reserv_id` int(11) NOT NULL AUTO_INCREMENT,
   `f_name` text NOT NULL,
   `l_name` text NOT NULL,
   `num_guests` int(11) NOT NULL,
@@ -37,16 +28,18 @@ CREATE TABLE `reservation` (
   `time_zone` text NOT NULL,
   `telephone` text NOT NULL,
   `comment` mediumtext NOT NULL,
-  `reg_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `user_fk` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_fk` int(11) NOT NULL,
+  PRIMARY KEY (`reserv_id`),
+  KEY `users_fk` (`user_fk`)
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `reservation`
 --
 
 INSERT INTO `reservation` (`reserv_id`, `f_name`, `l_name`, `num_guests`, `num_tables`, `rdate`, `time_zone`, `telephone`, `comment`, `reg_date`, `user_fk`) VALUES
-(77, 'abc', 'abc', 5, 2, '2021-04-16', '12:00 - 16:00', '789456123', 'jjkj', '2021-04-15 12:09:05', 36);
+
 
 -- --------------------------------------------------------
 
@@ -54,9 +47,12 @@ INSERT INTO `reservation` (`reserv_id`, `f_name`, `l_name`, `num_guests`, `num_t
 -- Table structure for table `role`
 --
 
-CREATE TABLE `role` (
-  `role_id` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE IF NOT EXISTS `role` (
+  `role_id` int(5) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`role_id`),
+  KEY `role_id` (`role_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `role`
@@ -70,73 +66,69 @@ INSERT INTO `role` (`role_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `schedule`
+--
+
+DROP TABLE IF EXISTS `schedule`;
+CREATE TABLE IF NOT EXISTS `schedule` (
+  `schedule_id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` date NOT NULL,
+  `open_time` time NOT NULL DEFAULT '12:00:00',
+  `close_time` time NOT NULL DEFAULT '00:00:00',
+  PRIMARY KEY (`schedule_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `schedule`
+--
+
+INSERT INTO `schedule` (`schedule_id`, `date`, `open_time`, `close_time`) VALUES
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tables`
+--
+
+DROP TABLE IF EXISTS `tables`;
+CREATE TABLE IF NOT EXISTS `tables` (
+  `tables_id` int(11) NOT NULL AUTO_INCREMENT,
+  `t_date` date NOT NULL,
+  `t_tables` int(11) NOT NULL,
+  PRIMARY KEY (`tables_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tables`
+--
+
+INSERT INTO `tables` (`tables_id`, `t_date`, `t_tables`) VALUES
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `uidUsers` tinytext NOT NULL,
   `emailUsers` tinytext NOT NULL,
   `pwdUsers` longtext NOT NULL,
-  `reg_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `role_id` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `role_id` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`user_id`),
+  KEY `role_id` (`role_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`user_id`, `uidUsers`, `emailUsers`, `pwdUsers`, `reg_date`, `role_id`) VALUES
-(35, 'aaaa', 'aa@gmail.com', '$2y$10$j5xhJKHRJFg3SuUtZUR3pugan4C9hRom3EqQPZbpuMCq3BUISFc1u', '2021-04-15 12:06:38', 1),
-(36, 'abca', 'abava@gmail.com', '$2y$10$I4M9mwyTG1dtgF101zmeyuO33F5Nqd/iCXbKE5X8tiy50AnaE8POy', '2021-04-15 12:08:21', 1);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `reservation`
---
-ALTER TABLE `reservation`
-  ADD PRIMARY KEY (`reserv_id`),
-  ADD KEY `users_fk` (`user_fk`);
-
---
--- Indexes for table `role`
---
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`role_id`),
-  ADD KEY `role_id` (`role_id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`),
-  ADD KEY `role_id` (`role_id`);
-
---
-
---
-
---
--- AUTO_INCREMENT for table `reservation`
---
-ALTER TABLE `reservation`
-  MODIFY `reserv_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
-
---
--- AUTO_INCREMENT for table `role`
---
-ALTER TABLE `role`
-  MODIFY `role_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
 
 
 
@@ -154,6 +146,3 @@ ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`) ON UPDATE NO ACTION;
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

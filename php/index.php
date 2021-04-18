@@ -57,7 +57,7 @@ require "header.php";
     	<div class="arranging"><br><hr>
 	<h4 class="text-center">About our cafe</h4>
 	<p><br>Ismav cafe is well known for its famous chocolate varieties. This cafe found by a group of three people names Vamsi, Srikanth, Nishanth.
-Established in 2021, Ismav cafe is a locally-owned, independent catering and restaurant service. We’re still happily serving the community with quality fresh food. Our catering service has grown to become one of the largest and most recognized services. Our cafe is famous for our chocolate dishes!<br><br><br></p><hr>
+Established in 2021, Ismav cafe is a locally-owned, independent catering and restaurant service. We’re still happily serving the community with quality fresh food. Our catering service has grown to become one of the largest and most recognized services. Our cafe is famous for our chocolate dishes!.<br><br><br></p><hr>
 	</div>
      </div>
     </div><br>
